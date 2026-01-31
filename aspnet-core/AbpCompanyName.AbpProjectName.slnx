@@ -1,0 +1,13 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/AbpCompanyName.AbpProjectName.Application/AbpCompanyName.AbpProjectName.Application.csproj" />
+    <Project Path="src/AbpCompanyName.AbpProjectName.Core/AbpCompanyName.AbpProjectName.Core.csproj" />
+    <Project Path="src/AbpCompanyName.AbpProjectName.EntityFrameworkCore/AbpCompanyName.AbpProjectName.EntityFrameworkCore.csproj" />
+    <Project Path="src/AbpCompanyName.AbpProjectName.Migrator/AbpCompanyName.AbpProjectName.Migrator.csproj" />
+    <Project Path="src/AbpCompanyName.AbpProjectName.Web.Core/AbpCompanyName.AbpProjectName.Web.Core.csproj" />
+    <Project Path="src/AbpCompanyName.AbpProjectName.Web.Host/AbpCompanyName.AbpProjectName.Web.Host.csproj" />
+  </Folder>
+  <Folder Name="/test/">
+    <Project Path="test/AbpCompanyName.AbpProjectName.Tests/AbpCompanyName.AbpProjectName.Tests.csproj" />
+  </Folder>
+</Solution>
