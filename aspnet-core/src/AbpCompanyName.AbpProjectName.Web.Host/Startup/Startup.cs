@@ -4,6 +4,8 @@ using Abp.AspNetCore.SignalR.Hubs;
 using Abp.Extensions;
 using AbpCompanyName.AbpProjectName.Configuration;
 using AbpCompanyName.AbpProjectName.Identity;
+using Castle.Facilities.Logging;
+using Castle.Services.Logging.SerilogIntegration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -69,6 +71,18 @@ namespace AbpCompanyName.AbpProjectName.Web.Host.Startup
             ConfigureSwagger(services);
 
             // Configure Abp and Dependency Injection
+
+            // Configure Serilog logging
+            Log.Logger = new LoggerConfiguration()
+                .ReadFrom.Configuration(_appConfiguration)
+                .Enrich.FromLogContext()
+                .CreateLogger();
+            services.AddAbpWithoutCreatingServiceProvider<AbpProjectNameWebHostModule>(
+                // Configure Serilog logging
+                options => options.IocManager.IocContainer.AddFacility<LoggingFacility>(
+                    f => f.LogUsing(new SerilogFactory(Log.Logger))
+                )
+            );
             //services.AddAbpWithoutCreatingServiceProvider<AbpProjectNameWebHostModule>(
             //    // Configure Log4Net logging
             //    options => options.IocManager.IocContainer.AddFacility<LoggingFacility>(
@@ -78,19 +92,14 @@ namespace AbpCompanyName.AbpProjectName.Web.Host.Startup
             //        )
             //    )
             //);
-            services.AddAbp<AbpProjectNameWebHostModule>();
+            //services.AddAbp<AbpProjectNameWebHostModule>();
 
-            // Configure Serilog logging
-            Log.Logger = new LoggerConfiguration()
-                .ReadFrom.Configuration(_appConfiguration)
-                .Enrich.FromLogContext()
-                .CreateLogger();
 
-            services.AddLogging(loggingBuilder =>
-            {
-                loggingBuilder.ClearProviders();
-                loggingBuilder.AddSerilog(dispose: true);
-            });
+            //services.AddLogging(loggingBuilder =>
+            //{
+            //    loggingBuilder.ClearProviders();
+            //    loggingBuilder.AddSerilog(dispose: true);
+            //});
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)

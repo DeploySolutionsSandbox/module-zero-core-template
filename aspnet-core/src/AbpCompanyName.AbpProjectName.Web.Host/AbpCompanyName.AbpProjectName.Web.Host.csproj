@@ -47,6 +47,7 @@
 
     <PackageReference Include="Castle.Core-Serilog" />
     <PackageReference Include="Castle.Windsor" />
+    <PackageReference Include="Castle.LoggingFacility" />
     <PackageReference Include="Serilog.AspNetCore" />
     <PackageReference Include="Serilog.Extensions.Logging" />
     <PackageReference Include="Serilog.Sinks.Async" />
