@@ -1,4 +1,9 @@
 <Solution>
+  <Folder Name="/solution_items/">
+    <File Path="common.props" />
+    <File Path="configureawait.props" />
+    <File Path="Directory.Packages.props" />
+  </Folder>
   <Folder Name="/src/">
     <Project Path="src/AbpCompanyName.AbpProjectName.Application/AbpCompanyName.AbpProjectName.Application.csproj" />
     <Project Path="src/AbpCompanyName.AbpProjectName.Core/AbpCompanyName.AbpProjectName.Core.csproj" />
