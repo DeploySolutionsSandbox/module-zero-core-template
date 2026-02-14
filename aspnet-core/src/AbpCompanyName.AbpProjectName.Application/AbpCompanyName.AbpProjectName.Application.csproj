@@ -15,7 +15,6 @@
 
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Microsoft.Extensions.Identity.Core" />
     <PackageReference Include="AutoMapper" />
     <PackageReference Include="Castle.Core" />
     <PackageReference Include="AutoMapper.Collection" />

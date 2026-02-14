@@ -6,14 +6,7 @@
   <ItemGroup>
   </ItemGroup>
   <!-- Deploy Solutions Packages -->
-  <ItemGroup>
-    <PackageVersion Include="Deploy.LaunchPad.Util" Version="10.21.7" />
-    <PackageVersion Include="Deploy.LaunchPad.Core" Version="10.22.16" />
-    <PackageVersion Include="Deploy.LaunchPad.Core.Abp" Version="10.22.7" />
-    <PackageVersion Include="Deploy.LaunchPad.AWS" Version="10.21.0" />
-    <PackageVersion Include="Deploy.LaunchPad.AWS.Abp" Version="10.21.0" />
-    <PackageVersion Include="Deploy.LaunchPad.Python" Version="10.21.0" />
-  </ItemGroup>
+  
   <!-- ABP Packages Starts -->
   <!--
   <ItemGroup>
@@ -56,7 +49,6 @@
     <PackageVersion Include="Microsoft.Extensions.Identity.Core" Version="10.0.3" />
     <PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.8" />
     <PackageVersion Include="Microsoft.OpenApi" Version="3.3.1" />
-    <PackageVersion Include="System.Linq.Dynamic.Core" Version="1.7.1" />
   </ItemGroup>
   <!-- Microsoft Packages Ends -->
   <!-- Logging Packages Starts -->
@@ -101,6 +93,7 @@
     <PackageVersion Include="NSubstitute" Version="5.3.0" />
     <PackageVersion Include="Shouldly" Version="4.3.0" />
     <PackageVersion Include="Swashbuckle.AspNetCore" Version="10.1.2" />
+    <PackageVersion Include="System.Linq.Dynamic.Core" Version="1.7.1" />
     <PackageVersion Include="Castle.Windsor" Version="6.0.0" />
     <PackageVersion Include="Castle.Windsor.MsDependencyInjection" Version="4.1.0" />
     <PackageVersion Include="Castle.Windsor.Extensions.DependencyInjection" Version="6.0.0" />
