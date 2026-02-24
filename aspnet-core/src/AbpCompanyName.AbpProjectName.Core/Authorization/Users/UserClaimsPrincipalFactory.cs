@@ -1,6 +1,7 @@
 ﻿using Abp.Authorization;
 using Abp.Domain.Uow;
 using AbpCompanyName.AbpProjectName.Authorization.Roles;
+using Deploy.LaunchPad.Core.Domain.UnitOfWork;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 

@@ -9,6 +9,8 @@ using Abp.Zero.EntityFrameworkCore;
 using AbpCompanyName.AbpProjectName.EntityFrameworkCore;
 using AbpCompanyName.AbpProjectName.Tests.DependencyInjection;
 using Castle.MicroKernel.Registration;
+using Deploy.LaunchPad.Util.Dependency;
+using Deploy.LaunchPad.Util.Modules;
 using NSubstitute;
 using System;
 

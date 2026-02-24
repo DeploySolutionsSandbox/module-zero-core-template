@@ -1,5 +1,6 @@
 ﻿using Abp.Localization;
 using Abp.MultiTenancy;
+using Deploy.LaunchPad.Core.MultiTenancy;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;

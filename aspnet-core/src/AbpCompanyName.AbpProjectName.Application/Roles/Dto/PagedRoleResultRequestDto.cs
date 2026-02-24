@@ -1,5 +1,6 @@
 ﻿using Abp.Application.Services.Dto;
 using Abp.Runtime.Validation;
+using Deploy.LaunchPad.Core.Application.Services.Dto;
 
 namespace AbpCompanyName.AbpProjectName.Roles.Dto;
 

@@ -2,9 +2,7 @@
 using Abp.Application.Services.Dto;
 using Abp.Authorization;
 using Abp.Domain.Repositories;
-using Abp.Extensions;
 using Abp.IdentityFramework;
-using Abp.Linq.Extensions;
 using Abp.MultiTenancy;
 using Abp.Runtime.Security;
 using AbpCompanyName.AbpProjectName.Authorization;
@@ -12,6 +10,10 @@ using AbpCompanyName.AbpProjectName.Authorization.Roles;
 using AbpCompanyName.AbpProjectName.Authorization.Users;
 using AbpCompanyName.AbpProjectName.Editions;
 using AbpCompanyName.AbpProjectName.MultiTenancy.Dto;
+using Deploy.LaunchPad.Core.Application.Services.Dto;
+using Deploy.LaunchPad.Core.Domain.Repositories;
+using Deploy.LaunchPad.Core.MultiTenancy;
+using Deploy.LaunchPad.Util.Extensions;
 using Microsoft.AspNetCore.Identity;
 using System.Linq;
 using System.Linq.Dynamic.Core;
@@ -94,7 +96,7 @@ public class TenantAppService : AsyncCrudAppService<Tenant, TenantDto, int, Page
 
     protected override IQueryable<Tenant> CreateFilteredQuery(PagedTenantResultRequestDto input)
     {
-        return Repository.GetAll()
+        return (IQueryable<Tenant>)Repository.GetAll()
             .WhereIf(!input.Keyword.IsNullOrWhiteSpace(), x => x.TenancyName.Contains(input.Keyword) || x.Name.Contains(input.Keyword))
             .WhereIf(input.IsActive.HasValue, x => x.IsActive == input.IsActive);
     }

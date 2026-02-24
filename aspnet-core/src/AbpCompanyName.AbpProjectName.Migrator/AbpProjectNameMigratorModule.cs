@@ -1,10 +1,12 @@
 using Abp.Events.Bus;
 using Abp.Modules;
-using Abp.Reflection.Extensions;
 using AbpCompanyName.AbpProjectName.Configuration;
 using AbpCompanyName.AbpProjectName.EntityFrameworkCore;
 using AbpCompanyName.AbpProjectName.Migrator.DependencyInjection;
 using Castle.MicroKernel.Registration;
+using Deploy.LaunchPad.Core.Events;
+using Deploy.LaunchPad.Util.Extensions;
+using Deploy.LaunchPad.Util.Modules;
 using Microsoft.Extensions.Configuration;
 
 namespace AbpCompanyName.AbpProjectName.Migrator;

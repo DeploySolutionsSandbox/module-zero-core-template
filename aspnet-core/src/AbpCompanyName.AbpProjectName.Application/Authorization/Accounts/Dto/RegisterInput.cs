@@ -1,7 +1,7 @@
 ﻿using Abp.Auditing;
 using Abp.Authorization.Users;
-using Abp.Extensions;
 using AbpCompanyName.AbpProjectName.Validation;
+using Deploy.LaunchPad.Util.Extensions;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 

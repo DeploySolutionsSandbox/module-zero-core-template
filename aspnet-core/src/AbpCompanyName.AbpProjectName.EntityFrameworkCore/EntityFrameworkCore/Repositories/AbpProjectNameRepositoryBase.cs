@@ -2,6 +2,8 @@
 using Abp.Domain.Repositories;
 using Abp.EntityFrameworkCore;
 using Abp.EntityFrameworkCore.Repositories;
+using Deploy.LaunchPad.Core.Domain.Entities;
+using Deploy.LaunchPad.Core.Domain.Repositories;
 
 namespace AbpCompanyName.AbpProjectName.EntityFrameworkCore.Repositories;
 

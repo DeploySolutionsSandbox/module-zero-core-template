@@ -7,6 +7,7 @@ using AbpCompanyName.AbpProjectName.Authorization;
 using AbpCompanyName.AbpProjectName.Authorization.Users;
 using AbpCompanyName.AbpProjectName.Models.TokenAuth;
 using AbpCompanyName.AbpProjectName.MultiTenancy;
+using Deploy.LaunchPad.Core.MultiTenancy;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;

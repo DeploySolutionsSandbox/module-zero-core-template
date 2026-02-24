@@ -1,5 +1,6 @@
 ﻿using Abp.MultiTenancy;
 using AbpCompanyName.AbpProjectName.Authorization.Users;
+using Deploy.LaunchPad.Core.MultiTenancy;
 
 namespace AbpCompanyName.AbpProjectName.MultiTenancy;
 

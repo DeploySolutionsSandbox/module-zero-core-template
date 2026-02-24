@@ -2,6 +2,7 @@
 using Abp.Authorization;
 using Abp.Dependency;
 using Abp.UI;
+using Deploy.LaunchPad.Util.Dependency;
 using System;
 
 namespace AbpCompanyName.AbpProjectName.Authorization;

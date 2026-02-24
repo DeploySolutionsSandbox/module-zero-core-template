@@ -2,6 +2,7 @@ using Abp.Application.Services.Dto;
 using Abp.Authorization.Users;
 using Abp.AutoMapper;
 using AbpCompanyName.AbpProjectName.Authorization.Users;
+using Deploy.LaunchPad.Core.Application.Services.Dto;
 using System;
 using System.ComponentModel.DataAnnotations;
 

@@ -2,6 +2,8 @@
 using Abp.Application.Features;
 using Abp.Domain.Repositories;
 using Abp.Domain.Uow;
+using Deploy.LaunchPad.Core.Domain.Repositories;
+using Deploy.LaunchPad.Core.Domain.UnitOfWork;
 
 namespace AbpCompanyName.AbpProjectName.Editions;
 

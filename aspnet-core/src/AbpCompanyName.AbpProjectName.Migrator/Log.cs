@@ -1,6 +1,8 @@
 using Abp.Dependency;
 using Abp.Timing;
 using Castle.Core.Logging;
+using Deploy.LaunchPad.Util.Dependency;
+using Deploy.LaunchPad.Util.Timing;
 using System;
 
 namespace AbpCompanyName.AbpProjectName.Migrator;

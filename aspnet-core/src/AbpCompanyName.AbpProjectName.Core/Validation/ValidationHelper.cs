@@ -1,4 +1,4 @@
-﻿using Abp.Extensions;
+﻿using Deploy.LaunchPad.Util.Extensions;
 using System.Text.RegularExpressions;
 
 namespace AbpCompanyName.AbpProjectName.Validation;

@@ -2,13 +2,14 @@
 using Abp.Application.Services.Dto;
 using Abp.Authorization;
 using Abp.Domain.Repositories;
-using Abp.Extensions;
 using Abp.IdentityFramework;
-using Abp.Linq.Extensions;
 using AbpCompanyName.AbpProjectName.Authorization;
 using AbpCompanyName.AbpProjectName.Authorization.Roles;
 using AbpCompanyName.AbpProjectName.Authorization.Users;
 using AbpCompanyName.AbpProjectName.Roles.Dto;
+using Deploy.LaunchPad.Core.Application.Services.Dto;
+using Deploy.LaunchPad.Core.Domain.Repositories;
+using Deploy.LaunchPad.Util.Extensions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -52,13 +53,12 @@ public class RoleAppService : AsyncCrudAppService<Role, RoleDto, int, PagedRoleR
 
     public async Task<ListResultDto<RoleListDto>> GetRolesAsync(GetRolesInput input)
     {
-        var roles = await _roleManager
+        var roles = _roleManager
             .Roles
             .WhereIf(
                 !input.Permission.IsNullOrWhiteSpace(),
                 r => r.Permissions.Any(rp => rp.Name == input.Permission && rp.IsGranted)
-            )
-            .ToListAsync();
+            ).ToList();
 
         return new ListResultDto<RoleListDto>(ObjectMapper.Map<List<RoleListDto>>(roles));
     }
@@ -109,7 +109,7 @@ public class RoleAppService : AsyncCrudAppService<Role, RoleDto, int, PagedRoleR
 
     protected override IQueryable<Role> CreateFilteredQuery(PagedRoleResultRequestDto input)
     {
-        return Repository.GetAllIncluding(x => x.Permissions)
+        return (IQueryable<Role>)Repository.GetAllIncluding(x => x.Permissions)
             .WhereIf(!input.Keyword.IsNullOrWhiteSpace(), x => x.Name.Contains(input.Keyword)
             || x.DisplayName.Contains(input.Keyword)
             || x.Description.Contains(input.Keyword));

@@ -1,4 +1,5 @@
 ﻿using Abp.Dependency;
+using Deploy.LaunchPad.Util.Dependency;
 using System.Threading.Tasks;
 
 namespace AbpCompanyName.AbpProjectName.Authentication.External

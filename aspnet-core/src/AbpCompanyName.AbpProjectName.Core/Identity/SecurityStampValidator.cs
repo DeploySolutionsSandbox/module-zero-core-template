@@ -3,6 +3,7 @@ using Abp.Domain.Uow;
 using AbpCompanyName.AbpProjectName.Authorization.Roles;
 using AbpCompanyName.AbpProjectName.Authorization.Users;
 using AbpCompanyName.AbpProjectName.MultiTenancy;
+using Deploy.LaunchPad.Core.Domain.UnitOfWork;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;

@@ -50,6 +50,7 @@
     <Copy SourceFiles="@(DebugAssemblies)" DestinationFolder="$(SharedBuildOutputFolder)" />
   </Target>
 
+  <!--
   <ItemGroup>
     <Reference Include="Abp">
       <HintPath>..\..\..\..\aspnetboilerplate\build\shared\Abp.dll</HintPath>
@@ -94,6 +95,62 @@
       <HintPath>..\..\..\..\aspnetboilerplate\build\shared\Abp.ZeroCore.EntityFrameworkCore.dll</HintPath>
     </Reference>
   </ItemGroup>
+-->
+  <ItemGroup>
+    <Reference Include="Abp">
+      <HintPath>..\..\..\..\..\deploysolutionsfactory\launchpad_boilerplate\build\shared\Abp.dll</HintPath>
+    </Reference>
+    <Reference Include="Abp.AutoMapper">
+      <HintPath>..\..\..\..\..\deploysolutionsfactory\launchpad_boilerplate\build\shared\Abp.AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Abp.AspNetCore">
+      <HintPath>..\..\..\..\..\deploysolutionsfactory\launchpad_boilerplate\build\shared\Abp.AspNetCore.dll</HintPath>
+    </Reference>
+    <Reference Include="Abp.AspNetCore.OpenIddict">
+      <HintPath>..\..\..\..\..\deploysolutionsfactory\launchpad_boilerplate\build\shared\Abp.AspNetCore.OpenIddict.dll</HintPath>
+    </Reference>
+    <Reference Include="Abp.AspNetCore.SignalR">
+      <HintPath>..\..\..\..\..\deploysolutionsfactory\launchpad_boilerplate\build\shared\Abp.AspNetCore.SignalR.dll</HintPath>
+    </Reference>
+    <Reference Include="Abp.EntityFrameworkCore">
+      <HintPath>..\..\..\..\..\deploysolutionsfactory\launchpad_boilerplate\build\shared\Abp.EntityFrameworkCore.dll</HintPath>
+    </Reference>
+    <Reference Include="Abp.EntityFramework.Common">
+      <HintPath>..\..\..\..\..\deploysolutionsfactory\launchpad_boilerplate\build\shared\Abp.EntityFramework.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Abp.FluentValidation">
+      <HintPath>..\..\..\..\..\deploysolutionsfactory\launchpad_boilerplate\build\shared\Abp.FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="Abp.Web.Common">
+      <HintPath>..\..\..\..\..\deploysolutionsfactory\launchpad_boilerplate\build\shared\Abp.Web.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Abp.Castle.Log4Net">
+      <HintPath>..\..\..\..\..\deploysolutionsfactory\launchpad_boilerplate\build\shared\Abp.Castle.Log4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="Abp.TestBase">
+      <HintPath>..\..\..\..\..\deploysolutionsfactory\launchpad_boilerplate\build\shared\Abp.TestBase.dll</HintPath>
+    </Reference>
+    <Reference Include="Abp.Zero.Common">
+      <HintPath>..\..\..\..\..\deploysolutionsfactory\launchpad_boilerplate\build\shared\Abp.Zero.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Abp.ZeroCore">
+      <HintPath>..\..\..\..\..\deploysolutionsfactory\launchpad_boilerplate\build\shared\Abp.ZeroCore.dll</HintPath>
+    </Reference>
+    <Reference Include="Abp.ZeroCore.EntityFrameworkCore">
+      <HintPath>..\..\..\..\..\deploysolutionsfactory\launchpad_boilerplate\build\shared\Abp.ZeroCore.EntityFrameworkCore.dll</HintPath>
+    </Reference>
 
-
+    <Reference Include="Deploy.LaunchPad.Util">
+      <HintPath>..\..\..\..\..\deploysolutions\launchpad-shared\build\shared\Deploy.LaunchPad.Util.dll</HintPath>
+    </Reference>
+    <Reference Include="Deploy.LaunchPad.Core">
+      <HintPath>..\..\..\..\..\deploysolutions\launchpad-shared\build\shared\Deploy.LaunchPad.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Deploy.LaunchPad.Files">
+      <HintPath>..\..\..\..\..\deploysolutions\launchpad-shared\build\shared\Deploy.LaunchPad.Files.dll</HintPath>
+    </Reference>
+    <Reference Include="Deploy.LaunchPad.Data">
+      <HintPath>..\..\..\..\..\deploysolutions\launchpad-shared\build\shared\Deploy.LaunchPad.Data.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 </Project>

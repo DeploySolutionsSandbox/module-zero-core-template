@@ -2,6 +2,8 @@
 using Abp.EntityFrameworkCore;
 using Abp.MultiTenancy;
 using Abp.Zero.EntityFrameworkCore;
+using Deploy.LaunchPad.Core.Domain.UnitOfWork;
+using Deploy.LaunchPad.Core.MultiTenancy;
 
 namespace AbpCompanyName.AbpProjectName.EntityFrameworkCore;
 

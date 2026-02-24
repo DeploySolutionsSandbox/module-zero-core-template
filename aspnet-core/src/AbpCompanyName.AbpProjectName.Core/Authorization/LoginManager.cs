@@ -9,6 +9,8 @@ using Abp.Zero.Configuration;
 using AbpCompanyName.AbpProjectName.Authorization.Roles;
 using AbpCompanyName.AbpProjectName.Authorization.Users;
 using AbpCompanyName.AbpProjectName.MultiTenancy;
+using Deploy.LaunchPad.Core.Domain.Repositories;
+using Deploy.LaunchPad.Core.Domain.UnitOfWork;
 using Microsoft.AspNetCore.Identity;
 
 namespace AbpCompanyName.AbpProjectName.Authorization;

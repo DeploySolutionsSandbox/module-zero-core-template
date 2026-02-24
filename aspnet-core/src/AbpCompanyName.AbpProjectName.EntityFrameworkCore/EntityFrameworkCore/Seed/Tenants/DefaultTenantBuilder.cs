@@ -1,6 +1,7 @@
 ﻿using Abp.MultiTenancy;
 using AbpCompanyName.AbpProjectName.Editions;
 using AbpCompanyName.AbpProjectName.MultiTenancy;
+using Deploy.LaunchPad.Core.MultiTenancy;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 

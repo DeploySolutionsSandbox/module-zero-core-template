@@ -3,6 +3,8 @@ using Abp.Domain.Repositories;
 using Abp.Domain.Uow;
 using Abp.Organizations;
 using AbpCompanyName.AbpProjectName.Authorization.Roles;
+using Deploy.LaunchPad.Core.Domain.Repositories;
+using Deploy.LaunchPad.Core.Domain.UnitOfWork;
 
 namespace AbpCompanyName.AbpProjectName.Authorization.Users;
 

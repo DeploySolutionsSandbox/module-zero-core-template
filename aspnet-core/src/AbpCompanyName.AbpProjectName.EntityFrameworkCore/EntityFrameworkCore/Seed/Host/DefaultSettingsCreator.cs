@@ -2,6 +2,7 @@
 using Abp.Localization;
 using Abp.MultiTenancy;
 using Abp.Net.Mail;
+using Deploy.LaunchPad.Core.MultiTenancy;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 

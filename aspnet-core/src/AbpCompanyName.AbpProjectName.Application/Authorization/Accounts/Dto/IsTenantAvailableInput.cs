@@ -1,4 +1,5 @@
 ﻿using Abp.MultiTenancy;
+using Deploy.LaunchPad.Core.MultiTenancy;
 using System.ComponentModel.DataAnnotations;
 
 namespace AbpCompanyName.AbpProjectName.Authorization.Accounts.Dto;

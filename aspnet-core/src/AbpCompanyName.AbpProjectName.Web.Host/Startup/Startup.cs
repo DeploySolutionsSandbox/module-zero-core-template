@@ -1,11 +1,11 @@
 ﻿using Abp.AspNetCore;
 using Abp.AspNetCore.Mvc.Antiforgery;
 using Abp.AspNetCore.SignalR.Hubs;
-using Abp.Extensions;
 using AbpCompanyName.AbpProjectName.Configuration;
 using AbpCompanyName.AbpProjectName.Identity;
 using Castle.Facilities.Logging;
 using Castle.Services.Logging.SerilogIntegration;
+using Deploy.LaunchPad.Util.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;

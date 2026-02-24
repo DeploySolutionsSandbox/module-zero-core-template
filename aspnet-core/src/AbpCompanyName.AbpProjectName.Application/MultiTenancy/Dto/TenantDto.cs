@@ -1,6 +1,8 @@
 using Abp.Application.Services.Dto;
 using Abp.AutoMapper;
 using Abp.MultiTenancy;
+using Deploy.LaunchPad.Core.Application.Services.Dto;
+using Deploy.LaunchPad.Core.MultiTenancy;
 using System.ComponentModel.DataAnnotations;
 
 namespace AbpCompanyName.AbpProjectName.MultiTenancy.Dto;

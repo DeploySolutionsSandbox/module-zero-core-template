@@ -3,6 +3,8 @@ using Abp.Domain.Repositories;
 using Abp.MultiTenancy;
 using AbpCompanyName.AbpProjectName.Authorization.Users;
 using AbpCompanyName.AbpProjectName.Editions;
+using Deploy.LaunchPad.Core.Domain.Repositories;
+using Deploy.LaunchPad.Core.MultiTenancy;
 
 namespace AbpCompanyName.AbpProjectName.MultiTenancy;
 

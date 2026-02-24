@@ -3,9 +3,7 @@ using Abp.Application.Services.Dto;
 using Abp.Authorization;
 using Abp.Domain.Entities;
 using Abp.Domain.Repositories;
-using Abp.Extensions;
 using Abp.IdentityFramework;
-using Abp.Linq.Extensions;
 using Abp.Localization;
 using Abp.Runtime.Session;
 using Abp.UI;
@@ -14,6 +12,10 @@ using AbpCompanyName.AbpProjectName.Authorization.Roles;
 using AbpCompanyName.AbpProjectName.Authorization.Users;
 using AbpCompanyName.AbpProjectName.Roles.Dto;
 using AbpCompanyName.AbpProjectName.Users.Dto;
+using Deploy.LaunchPad.Core.Application.Services.Dto;
+using Deploy.LaunchPad.Core.Domain.Repositories;
+using Deploy.LaunchPad.Core.Runtime.Session;
+using Deploy.LaunchPad.Util.Extensions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -31,7 +33,7 @@ public class UserAppService : AsyncCrudAppService<User, UserDto, long, PagedUser
     private readonly RoleManager _roleManager;
     private readonly IRepository<Role> _roleRepository;
     private readonly IPasswordHasher<User> _passwordHasher;
-    private readonly IAbpSession _abpSession;
+    private readonly ILaunchPadSession _abpSession;
     private readonly LogInManager _logInManager;
 
     public UserAppService(
@@ -40,7 +42,7 @@ public class UserAppService : AsyncCrudAppService<User, UserDto, long, PagedUser
         RoleManager roleManager,
         IRepository<Role> roleRepository,
         IPasswordHasher<User> passwordHasher,
-        IAbpSession abpSession,
+        ILaunchPadSession abpSession,
         LogInManager logInManager)
         : base(repository)
     {
@@ -159,7 +161,7 @@ public class UserAppService : AsyncCrudAppService<User, UserDto, long, PagedUser
 
     protected override IQueryable<User> CreateFilteredQuery(PagedUserResultRequestDto input)
     {
-        return Repository.GetAllIncluding(x => x.Roles)
+        return (IQueryable<User>)Repository.GetAllIncluding(x => x.Roles)
             .WhereIf(!input.Keyword.IsNullOrWhiteSpace(), x => x.UserName.Contains(input.Keyword) || x.Name.Contains(input.Keyword) || x.EmailAddress.Contains(input.Keyword))
             .WhereIf(input.IsActive.HasValue, x => x.IsActive == input.IsActive);
     }

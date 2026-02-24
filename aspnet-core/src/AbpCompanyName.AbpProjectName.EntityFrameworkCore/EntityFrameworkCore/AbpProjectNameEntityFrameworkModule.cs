@@ -1,8 +1,9 @@
 ﻿using Abp.EntityFrameworkCore.Configuration;
 using Abp.Modules;
-using Abp.Reflection.Extensions;
 using Abp.Zero.EntityFrameworkCore;
 using AbpCompanyName.AbpProjectName.EntityFrameworkCore.Seed;
+using Deploy.LaunchPad.Util.Extensions;
+using Deploy.LaunchPad.Util.Modules;
 
 namespace AbpCompanyName.AbpProjectName.EntityFrameworkCore;
 

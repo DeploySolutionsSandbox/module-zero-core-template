@@ -4,6 +4,8 @@ using Abp.EntityFrameworkCore.Uow;
 using Abp.MultiTenancy;
 using AbpCompanyName.AbpProjectName.EntityFrameworkCore.Seed.Host;
 using AbpCompanyName.AbpProjectName.EntityFrameworkCore.Seed.Tenants;
+using Deploy.LaunchPad.Core.Domain.UnitOfWork;
+using Deploy.LaunchPad.Core.MultiTenancy;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Transactions;

@@ -5,6 +5,7 @@ using Abp.Runtime.Session;
 using Abp.UI;
 using AbpCompanyName.AbpProjectName.Authorization.Roles;
 using AbpCompanyName.AbpProjectName.MultiTenancy;
+using Deploy.LaunchPad.Core.Runtime.Session;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -16,7 +17,7 @@ namespace AbpCompanyName.AbpProjectName.Authorization.Users;
 
 public class UserRegistrationManager : DomainService
 {
-    public IAbpSession AbpSession { get; set; }
+    public ILaunchPadSession AbpSession { get; set; }
 
     private readonly TenantManager _tenantManager;
     private readonly UserManager _userManager;
