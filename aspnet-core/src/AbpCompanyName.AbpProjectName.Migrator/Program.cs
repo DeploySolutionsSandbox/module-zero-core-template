@@ -2,6 +2,7 @@
 using Abp.Castle.Logging.Log4Net;
 using Abp.Dependency;
 using Castle.Facilities.Logging;
+using Deploy.LaunchPad.Util.Dependency;
 using Deploy.LaunchPad.Util.Extensions;
 using System;
 

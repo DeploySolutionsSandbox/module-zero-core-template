@@ -6,6 +6,7 @@ using AbpCompanyName.AbpProjectName.EntityFrameworkCore.Seed.Host;
 using AbpCompanyName.AbpProjectName.EntityFrameworkCore.Seed.Tenants;
 using Deploy.LaunchPad.Core.Domain.UnitOfWork;
 using Deploy.LaunchPad.Core.MultiTenancy;
+using Deploy.LaunchPad.Util.Dependency;
 using Deploy.LaunchPad.Util.Guids;
 using Microsoft.EntityFrameworkCore;
 using System;

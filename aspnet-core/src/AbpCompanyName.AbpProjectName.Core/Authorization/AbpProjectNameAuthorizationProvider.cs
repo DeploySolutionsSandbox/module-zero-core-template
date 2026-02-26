@@ -1,6 +1,7 @@
 ﻿using Abp.Authorization;
 using Abp.Localization;
 using Abp.MultiTenancy;
+using Deploy.LaunchPad.Core.Localization;
 using Deploy.LaunchPad.Core.MultiTenancy;
 
 namespace AbpCompanyName.AbpProjectName.Authorization;

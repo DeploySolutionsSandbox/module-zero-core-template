@@ -1,6 +1,7 @@
 ﻿using Abp.Configuration.Startup;
 using Abp.Localization.Dictionaries;
 using Abp.Localization.Dictionaries.Xml;
+using Deploy.LaunchPad.Core.Localization;
 using Deploy.LaunchPad.Util.Extensions;
 
 namespace AbpCompanyName.AbpProjectName.Localization;

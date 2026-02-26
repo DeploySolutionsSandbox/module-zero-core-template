@@ -11,6 +11,7 @@ using AbpCompanyName.AbpProjectName.Authorization.Users;
 using AbpCompanyName.AbpProjectName.MultiTenancy;
 using Deploy.LaunchPad.Core.Domain.Repositories;
 using Deploy.LaunchPad.Core.Domain.UnitOfWork;
+using Deploy.LaunchPad.Util.Dependency;
 using Microsoft.AspNetCore.Identity;
 
 namespace AbpCompanyName.AbpProjectName.Authorization;
