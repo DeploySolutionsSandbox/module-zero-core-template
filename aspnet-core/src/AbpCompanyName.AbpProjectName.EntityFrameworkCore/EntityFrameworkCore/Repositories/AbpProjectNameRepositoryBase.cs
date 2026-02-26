@@ -28,8 +28,8 @@ public abstract class AbpProjectNameRepositoryBase<TEntity, TPrimaryKey> : EfCor
 /// This is a shortcut of <see cref="AbpProjectNameRepositoryBase{TEntity,TPrimaryKey}"/> for <see cref="int"/> primary key.
 /// </summary>
 /// <typeparam name="TEntity">Entity type</typeparam>
-public abstract class AbpProjectNameRepositoryBase<TEntity> : AbpProjectNameRepositoryBase<TEntity, int>, IRepository<TEntity>
-    where TEntity : class, IEntity<int>
+public abstract class AbpProjectNameRepositoryBase<TEntity> : AbpProjectNameRepositoryBase<TEntity, System.Guid>, IRepository<TEntity>
+    where TEntity : class, IEntity
 {
     protected AbpProjectNameRepositoryBase(IDbContextProvider<AbpProjectNameDbContext> dbContextProvider)
         : base(dbContextProvider)

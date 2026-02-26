@@ -12,6 +12,7 @@ using Deploy.LaunchPad.Core.Domain.Repositories;
 using Deploy.LaunchPad.Util.Extensions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Dynamic.Core;
@@ -20,7 +21,7 @@ using System.Threading.Tasks;
 namespace AbpCompanyName.AbpProjectName.Roles;
 
 [AbpAuthorize(PermissionNames.Pages_Roles)]
-public class RoleAppService : AsyncCrudAppService<Role, RoleDto, int, PagedRoleResultRequestDto, CreateRoleDto, RoleDto>, IRoleAppService
+public class RoleAppService : AsyncCrudAppService<Role, RoleDto, System.Guid, PagedRoleResultRequestDto, CreateRoleDto, RoleDto>, IRoleAppService
 {
     private readonly RoleManager _roleManager;
     private readonly UserManager _userManager;
@@ -83,7 +84,7 @@ public class RoleAppService : AsyncCrudAppService<Role, RoleDto, int, PagedRoleR
         return MapToEntityDto(role);
     }
 
-    public override async Task DeleteAsync(EntityDto<int> input)
+    public override async Task DeleteAsync(EntityDto<Guid> input)
     {
         CheckDeletePermission();
 
@@ -115,7 +116,7 @@ public class RoleAppService : AsyncCrudAppService<Role, RoleDto, int, PagedRoleR
             || x.Description.Contains(input.Keyword));
     }
 
-    protected override async Task<Role> GetEntityByIdAsync(int id)
+    protected override async Task<Role> GetEntityByIdAsync(System.Guid id)
     {
         return await Repository.GetAllIncluding(x => x.Permissions).FirstOrDefaultAsync(x => x.Id == id);
     }

@@ -11,6 +11,7 @@ using AbpCompanyName.AbpProjectName.EntityFrameworkCore.Seed.Host;
 using AbpCompanyName.AbpProjectName.EntityFrameworkCore.Seed.Tenants;
 using AbpCompanyName.AbpProjectName.MultiTenancy;
 using Deploy.LaunchPad.Core.MultiTenancy;
+using Deploy.LaunchPad.Util.Guids;
 using LaunchPad.Core.Util;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -40,11 +41,11 @@ public abstract class AbpProjectNameTestBase : AbpIntegratedTestBase<AbpProjectN
         });
 
         // Seed initial data for default tenant
-        AbpSession.TenantId = 1;
+        AbpSession.TenantId = GuidConstants.Default;
         UsingDbContext(context =>
         {
             NormalizeDbContext(context);
-            new TenantRoleAndUserBuilder(context, 1).Create();
+            new TenantRoleAndUserBuilder(context, GuidConstants.Default).Create();
         });
 
         LoginAsDefaultTenantAdmin();
@@ -52,7 +53,7 @@ public abstract class AbpProjectNameTestBase : AbpIntegratedTestBase<AbpProjectN
 
     #region UsingDbContext
 
-    protected IDisposable UsingTenantId(int? tenantId)
+    protected IDisposable UsingTenantId(System.Guid? tenantId)
     {
         var previousTenantId = AbpSession.TenantId;
         AbpSession.TenantId = tenantId;
@@ -79,7 +80,7 @@ public abstract class AbpProjectNameTestBase : AbpIntegratedTestBase<AbpProjectN
         return UsingDbContextAsync(AbpSession.TenantId, func);
     }
 
-    protected void UsingDbContext(int? tenantId, Action<AbpProjectNameDbContext> action)
+    protected void UsingDbContext(System.Guid? tenantId, Action<AbpProjectNameDbContext> action)
     {
         using (UsingTenantId(tenantId))
         {
@@ -91,7 +92,7 @@ public abstract class AbpProjectNameTestBase : AbpIntegratedTestBase<AbpProjectN
         }
     }
 
-    protected async Task UsingDbContextAsync(int? tenantId, Func<AbpProjectNameDbContext, Task> action)
+    protected async Task UsingDbContextAsync(System.Guid? tenantId, Func<AbpProjectNameDbContext, Task> action)
     {
         using (UsingTenantId(tenantId))
         {
@@ -103,7 +104,7 @@ public abstract class AbpProjectNameTestBase : AbpIntegratedTestBase<AbpProjectN
         }
     }
 
-    protected T UsingDbContext<T>(int? tenantId, Func<AbpProjectNameDbContext, T> func)
+    protected T UsingDbContext<T>(System.Guid? tenantId, Func<AbpProjectNameDbContext, T> func)
     {
         T result;
 
@@ -119,7 +120,7 @@ public abstract class AbpProjectNameTestBase : AbpIntegratedTestBase<AbpProjectN
         return result;
     }
 
-    protected async Task<T> UsingDbContextAsync<T>(int? tenantId, Func<AbpProjectNameDbContext, Task<T>> func)
+    protected async Task<T> UsingDbContextAsync<T>(System.Guid? tenantId, Func<AbpProjectNameDbContext, Task<T>> func)
     {
         T result;
 

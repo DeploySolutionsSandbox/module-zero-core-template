@@ -4,7 +4,7 @@ using Deploy.LaunchPad.Core.Application.Services;
 
 namespace AbpCompanyName.AbpProjectName.MultiTenancy;
 
-public interface ITenantAppService : IAsyncCrudAppService<TenantDto, int, PagedTenantResultRequestDto, CreateTenantDto, TenantDto>
+public interface ITenantAppService : IAsyncCrudAppService<TenantDto, System.Guid, PagedTenantResultRequestDto, CreateTenantDto, TenantDto>
 {
 }
 

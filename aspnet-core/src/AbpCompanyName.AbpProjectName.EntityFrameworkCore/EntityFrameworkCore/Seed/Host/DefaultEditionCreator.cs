@@ -33,7 +33,7 @@ public class DefaultEditionCreator
         }
     }
 
-    private void CreateFeatureIfNotExists(int editionId, string featureName, bool isEnabled)
+    private void CreateFeatureIfNotExists(System.Guid editionId, string featureName, bool isEnabled)
     {
         if (_context.EditionFeatureSettings.IgnoreQueryFilters().Any(ef => ef.EditionId == editionId && ef.Name == featureName))
         {

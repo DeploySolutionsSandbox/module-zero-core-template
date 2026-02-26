@@ -16,9 +16,9 @@ namespace AbpCompanyName.AbpProjectName.EntityFrameworkCore.Seed.Tenants;
 public class TenantRoleAndUserBuilder
 {
     private readonly AbpProjectNameDbContext _context;
-    private readonly int _tenantId;
+    private readonly System.Guid _tenantId;
 
-    public TenantRoleAndUserBuilder(AbpProjectNameDbContext context, int tenantId)
+    public TenantRoleAndUserBuilder(AbpProjectNameDbContext context, System.Guid tenantId)
     {
         _context = context;
         _tenantId = tenantId;

@@ -89,7 +89,7 @@ public class UserRegistrationManager : DomainService
         return await GetActiveTenantAsync(AbpSession.TenantId.Value);
     }
 
-    private async Task<Tenant> GetActiveTenantAsync(int tenantId)
+    private async Task<Tenant> GetActiveTenantAsync(System.Guid tenantId)
     {
         var tenant = await _tenantManager.FindByIdAsync(tenantId);
         if (tenant == null)

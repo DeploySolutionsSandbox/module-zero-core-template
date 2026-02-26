@@ -6,6 +6,7 @@ using AbpCompanyName.AbpProjectName.EntityFrameworkCore.Seed.Host;
 using AbpCompanyName.AbpProjectName.EntityFrameworkCore.Seed.Tenants;
 using Deploy.LaunchPad.Core.Domain.UnitOfWork;
 using Deploy.LaunchPad.Core.MultiTenancy;
+using Deploy.LaunchPad.Util.Guids;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Transactions;
@@ -28,7 +29,7 @@ public static class SeedHelper
 
         // Default tenant seed (in host database).
         new DefaultTenantBuilder(context).Create();
-        new TenantRoleAndUserBuilder(context, 1).Create();
+        new TenantRoleAndUserBuilder(context, GuidConstants.Default).Create();
     }
 
     private static void WithDbContext<TDbContext>(IIocResolver iocResolver, Action<TDbContext> contextAction)

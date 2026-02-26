@@ -14,7 +14,7 @@ public class User : AbpUser<User>
         return Guid.NewGuid().ToString("N").Truncate(16);
     }
 
-    public static User CreateTenantAdminUser(int tenantId, string emailAddress)
+    public static User CreateTenantAdminUser(System.Guid tenantId, string emailAddress)
     {
         var user = new User
         {

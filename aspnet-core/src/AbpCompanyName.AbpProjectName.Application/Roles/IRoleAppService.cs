@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AbpCompanyName.AbpProjectName.Roles;
 
-public interface IRoleAppService : IAsyncCrudAppService<RoleDto, int, PagedRoleResultRequestDto, CreateRoleDto, RoleDto>
+public interface IRoleAppService : IAsyncCrudAppService<RoleDto, System.Guid, PagedRoleResultRequestDto, CreateRoleDto, RoleDto>
 {
     Task<ListResultDto<PermissionDto>> GetAllPermissions();
 

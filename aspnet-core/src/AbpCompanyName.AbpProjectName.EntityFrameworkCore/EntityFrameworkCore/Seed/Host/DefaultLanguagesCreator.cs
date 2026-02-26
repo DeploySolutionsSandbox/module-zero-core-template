@@ -15,7 +15,7 @@ public class DefaultLanguagesCreator
 
     private static List<ApplicationLanguage> GetInitialLanguages()
     {
-        var tenantId = AbpProjectNameConsts.MultiTenancyEnabled ? null : (int?)MultiTenancyConsts.DefaultTenantId;
+        var tenantId = AbpProjectNameConsts.MultiTenancyEnabled ? null : (System.Guid?)MultiTenancyConsts.DefaultTenantId;
         return new List<ApplicationLanguage>
         {
             new ApplicationLanguage(tenantId, "en", "English", "famfamfam-flags us"),

@@ -6,7 +6,7 @@ using System;
 
 namespace AbpCompanyName.AbpProjectName.Roles.Dto;
 
-public class RoleListDto : EntityDto, IHasCreationTime
+public class RoleListDto : EntityDto, IMustHaveCreationTime
 {
     public string Name { get; set; }
 

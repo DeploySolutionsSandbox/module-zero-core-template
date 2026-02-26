@@ -12,12 +12,12 @@ public class Role : AbpRole<User>
     {
     }
 
-    public Role(int? tenantId, string displayName)
+    public Role(System.Guid? tenantId, string displayName)
         : base(tenantId, displayName)
     {
     }
 
-    public Role(int? tenantId, string name, string displayName)
+    public Role(System.Guid? tenantId, string name, string displayName)
         : base(tenantId, name, displayName)
     {
     }

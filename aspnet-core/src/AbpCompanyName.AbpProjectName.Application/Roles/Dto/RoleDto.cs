@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace AbpCompanyName.AbpProjectName.Roles.Dto;
 
-public class RoleDto : EntityDto<int>
+public class RoleDto : EntityDto
 {
     [Required]
     [StringLength(AbpRoleBase.MaxNameLength)]

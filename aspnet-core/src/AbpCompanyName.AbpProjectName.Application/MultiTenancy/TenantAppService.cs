@@ -15,6 +15,7 @@ using Deploy.LaunchPad.Core.Domain.Repositories;
 using Deploy.LaunchPad.Core.MultiTenancy;
 using Deploy.LaunchPad.Util.Extensions;
 using Microsoft.AspNetCore.Identity;
+using System;
 using System.Linq;
 using System.Linq.Dynamic.Core;
 using System.Threading.Tasks;
@@ -22,7 +23,7 @@ using System.Threading.Tasks;
 namespace AbpCompanyName.AbpProjectName.MultiTenancy;
 
 [AbpAuthorize(PermissionNames.Pages_Tenants)]
-public class TenantAppService : AsyncCrudAppService<Tenant, TenantDto, int, PagedTenantResultRequestDto, CreateTenantDto, TenantDto>, ITenantAppService
+public class TenantAppService : AsyncCrudAppService<Tenant, TenantDto, System.Guid, PagedTenantResultRequestDto, CreateTenantDto, TenantDto>, ITenantAppService
 {
     private readonly TenantManager _tenantManager;
     private readonly EditionManager _editionManager;
@@ -31,7 +32,7 @@ public class TenantAppService : AsyncCrudAppService<Tenant, TenantDto, int, Page
     private readonly IAbpZeroDbMigrator _abpZeroDbMigrator;
 
     public TenantAppService(
-        IRepository<Tenant, int> repository,
+        IRepository<Tenant> repository,
         TenantManager tenantManager,
         EditionManager editionManager,
         UserManager userManager,
@@ -114,7 +115,7 @@ public class TenantAppService : AsyncCrudAppService<Tenant, TenantDto, int, Page
         entity.IsActive = updateInput.IsActive;
     }
 
-    public override async Task DeleteAsync(EntityDto<int> input)
+    public override async Task DeleteAsync(EntityDto<Guid> input)
     {
         CheckDeletePermission();
 

@@ -14,12 +14,12 @@ public class UserStore : AbpUserStore<Role, User>
         IUnitOfWorkManager unitOfWorkManager,
         IRepository<User, long> userRepository,
         IRepository<Role> roleRepository,
-        IRepository<UserRole, long> userRoleRepository,
+        IRepository<UserRole> userRoleRepository,
         IRepository<UserLogin, long> userLoginRepository,
         IRepository<UserClaim, long> userClaimRepository,
         IRepository<UserPermissionSetting, long> userPermissionSettingRepository,
         IRepository<UserOrganizationUnit, long> userOrganizationUnitRepository,
-        IRepository<OrganizationUnitRole, long> organizationUnitRoleRepository,
+        IRepository<OrganizationUnitRole> organizationUnitRoleRepository,
         IRepository<UserToken, long> userTokenRepository
     )
         : base(unitOfWorkManager,

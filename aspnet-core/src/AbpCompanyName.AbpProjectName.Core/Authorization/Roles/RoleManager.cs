@@ -28,7 +28,7 @@ public class RoleManager : AbpRoleManager<Role, User>
         IUnitOfWorkManager unitOfWorkManager,
         IRoleManagementConfig roleManagementConfig,
         IRepository<OrganizationUnit, long> organizationUnitRepository,
-        IRepository<OrganizationUnitRole, long> organizationUnitRoleRepository)
+        IRepository<OrganizationUnitRole> organizationUnitRoleRepository)
         : base(
               store,
               roleValidators,
