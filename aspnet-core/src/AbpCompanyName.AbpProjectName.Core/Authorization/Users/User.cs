@@ -18,6 +18,7 @@ public class User : AbpUser<User>
     {
         var user = new User
         {
+            Id= Guid.NewGuid(),
             TenantId = tenantId,
             UserName = AdminUserName,
             Name = AdminUserName,

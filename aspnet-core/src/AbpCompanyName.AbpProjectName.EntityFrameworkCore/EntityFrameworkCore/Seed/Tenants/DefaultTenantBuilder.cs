@@ -3,6 +3,7 @@ using AbpCompanyName.AbpProjectName.Editions;
 using AbpCompanyName.AbpProjectName.MultiTenancy;
 using Deploy.LaunchPad.Core.MultiTenancy;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq;
 
 namespace AbpCompanyName.AbpProjectName.EntityFrameworkCore.Seed.Tenants;
@@ -28,7 +29,7 @@ public class DefaultTenantBuilder
         var defaultTenant = _context.Tenants.IgnoreQueryFilters().FirstOrDefault(t => t.TenancyName == AbpTenantBase.DefaultTenantName);
         if (defaultTenant == null)
         {
-            defaultTenant = new Tenant(AbpTenantBase.DefaultTenantName, AbpTenantBase.DefaultTenantName);
+            defaultTenant = new Tenant(AbpTenantBase.DefaultTenantName, AbpTenantBase.DefaultTenantName) { Id = Guid.NewGuid() };
 
             var defaultEdition = _context.Editions.IgnoreQueryFilters().FirstOrDefault(e => e.Name == EditionManager.DefaultEditionName);
             if (defaultEdition != null)

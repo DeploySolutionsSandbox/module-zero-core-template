@@ -9,6 +9,7 @@ using Deploy.LaunchPad.Core.MultiTenancy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using System;
 using System.Linq;
 
 namespace AbpCompanyName.AbpProjectName.EntityFrameworkCore.Seed.Tenants;
@@ -36,7 +37,7 @@ public class TenantRoleAndUserBuilder
         var adminRole = _context.Roles.IgnoreQueryFilters().FirstOrDefault(r => r.TenantId == _tenantId && r.Name == StaticRoleNames.Tenants.Admin);
         if (adminRole == null)
         {
-            adminRole = _context.Roles.Add(new Role(_tenantId, StaticRoleNames.Tenants.Admin, StaticRoleNames.Tenants.Admin) { IsStatic = true }).Entity;
+            adminRole = _context.Roles.Add(new Role(_tenantId, StaticRoleNames.Tenants.Admin, StaticRoleNames.Tenants.Admin) { Id = Guid.NewGuid(), IsStatic = true }).Entity;
             _context.SaveChanges();
         }
 
@@ -59,6 +60,7 @@ public class TenantRoleAndUserBuilder
             _context.Permissions.AddRange(
                 permissions.Select(permission => new RolePermissionSetting
                 {
+                    Id = Guid.NewGuid(),
                     TenantId = _tenantId,
                     Name = permission.Name,
                     IsGranted = true,
@@ -82,7 +84,7 @@ public class TenantRoleAndUserBuilder
             _context.SaveChanges();
 
             // Assign Admin role to admin user
-            _context.UserRoles.Add(new UserRole(_tenantId, adminUser.Id, adminRole.Id));
+            _context.UserRoles.Add(new UserRole(_tenantId, adminUser.Id, adminRole.Id) { Id = Guid.NewGuid() });
             _context.SaveChanges();
         }
     }

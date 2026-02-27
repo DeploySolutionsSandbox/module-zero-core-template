@@ -11,6 +11,7 @@ using AbpCompanyName.AbpProjectName.EntityFrameworkCore.Seed.Host;
 using AbpCompanyName.AbpProjectName.EntityFrameworkCore.Seed.Tenants;
 using AbpCompanyName.AbpProjectName.MultiTenancy;
 using Deploy.LaunchPad.Core.MultiTenancy;
+using Deploy.LaunchPad.Core.Runtime.Session;
 using Deploy.LaunchPad.Util.Guids;
 using LaunchPad.Core.Util;
 using Microsoft.EntityFrameworkCore;

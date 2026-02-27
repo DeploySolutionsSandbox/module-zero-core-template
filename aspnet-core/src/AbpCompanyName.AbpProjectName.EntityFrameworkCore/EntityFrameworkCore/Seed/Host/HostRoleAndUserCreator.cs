@@ -9,6 +9,7 @@ using Deploy.LaunchPad.Core.MultiTenancy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using System;
 using System.Linq;
 
 namespace AbpCompanyName.AbpProjectName.EntityFrameworkCore.Seed.Host;
@@ -34,7 +35,7 @@ public class HostRoleAndUserCreator
         var adminRoleForHost = _context.Roles.IgnoreQueryFilters().FirstOrDefault(r => r.TenantId == null && r.Name == StaticRoleNames.Host.Admin);
         if (adminRoleForHost == null)
         {
-            adminRoleForHost = _context.Roles.Add(new Role(null, StaticRoleNames.Host.Admin, StaticRoleNames.Host.Admin) { IsStatic = true, IsDefault = true }).Entity;
+            adminRoleForHost = _context.Roles.Add(new Role(null, StaticRoleNames.Host.Admin, StaticRoleNames.Host.Admin) {Id= Guid.NewGuid(), IsStatic = true, IsDefault = true }).Entity;
             _context.SaveChanges();
         }
 
@@ -57,6 +58,7 @@ public class HostRoleAndUserCreator
             _context.Permissions.AddRange(
                 permissions.Select(permission => new RolePermissionSetting
                 {
+                    Id = Guid.NewGuid(),
                     TenantId = null,
                     Name = permission.Name,
                     IsGranted = true,
@@ -73,6 +75,7 @@ public class HostRoleAndUserCreator
         {
             var user = new User
             {
+                Id = Guid.NewGuid(),
                 TenantId = null,
                 UserName = AbpUserBase.AdminUserName,
                 Name = "admin",
@@ -89,7 +92,7 @@ public class HostRoleAndUserCreator
             _context.SaveChanges();
 
             // Assign Admin role to admin user
-            _context.UserRoles.Add(new UserRole(null, adminUserForHost.Id, adminRoleForHost.Id));
+            _context.UserRoles.Add(new UserRole(null, adminUserForHost.Id, adminRoleForHost.Id) { Id = Guid.NewGuid() } );
             _context.SaveChanges();
 
             _context.SaveChanges();

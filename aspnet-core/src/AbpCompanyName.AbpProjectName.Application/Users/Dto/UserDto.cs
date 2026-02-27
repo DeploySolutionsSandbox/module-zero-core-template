@@ -9,7 +9,7 @@ using System.ComponentModel.DataAnnotations;
 namespace AbpCompanyName.AbpProjectName.Users.Dto;
 
 [AutoMapFrom(typeof(User))]
-public class UserDto : EntityDto<long>
+public class UserDto : EntityDto<Guid>
 {
     [Required]
     [StringLength(AbpUserBase.MaxUserNameLength)]

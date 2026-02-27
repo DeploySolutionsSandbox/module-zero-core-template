@@ -4,11 +4,13 @@ using AbpCompanyName.AbpProjectName.Authorization.Roles;
 using Deploy.LaunchPad.Core.Domain.UnitOfWork;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
+using System.Diagnostics.CodeAnalysis;
 
 namespace AbpCompanyName.AbpProjectName.Authorization.Users;
 
 public class UserClaimsPrincipalFactory : AbpUserClaimsPrincipalFactory<User, Role>
 {
+    [SetsRequiredMembers]
     public UserClaimsPrincipalFactory(
         UserManager userManager,
         RoleManager roleManager,

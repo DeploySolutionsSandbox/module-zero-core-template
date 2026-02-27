@@ -2,6 +2,7 @@ using Abp.Application.Editions;
 using Abp.Application.Features;
 using AbpCompanyName.AbpProjectName.Editions;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq;
 
 namespace AbpCompanyName.AbpProjectName.EntityFrameworkCore.Seed.Host;
@@ -25,7 +26,7 @@ public class DefaultEditionCreator
         var defaultEdition = _context.Editions.IgnoreQueryFilters().FirstOrDefault(e => e.Name == EditionManager.DefaultEditionName);
         if (defaultEdition == null)
         {
-            defaultEdition = new Edition { Name = EditionManager.DefaultEditionName, DisplayName = EditionManager.DefaultEditionName };
+            defaultEdition = new Edition { Id = Guid.NewGuid(), Name = EditionManager.DefaultEditionName, DisplayName = EditionManager.DefaultEditionName };
             _context.Editions.Add(defaultEdition);
             _context.SaveChanges();
 
@@ -42,6 +43,7 @@ public class DefaultEditionCreator
 
         _context.EditionFeatureSettings.Add(new EditionFeatureSetting
         {
+            Id= Guid.NewGuid(),
             Name = featureName,
             Value = isEnabled.ToString(),
             EditionId = editionId

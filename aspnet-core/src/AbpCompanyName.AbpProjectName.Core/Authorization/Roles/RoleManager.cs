@@ -27,7 +27,7 @@ public class RoleManager : AbpRoleManager<Role, User>
         ICacheManager cacheManager,
         IUnitOfWorkManager unitOfWorkManager,
         IRoleManagementConfig roleManagementConfig,
-        IRepository<OrganizationUnit, long> organizationUnitRepository,
+        IRepository<OrganizationUnit> organizationUnitRepository,
         IRepository<OrganizationUnitRole> organizationUnitRoleRepository)
         : base(
               store,

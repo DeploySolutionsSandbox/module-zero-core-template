@@ -2,10 +2,12 @@ using Abp;
 using Abp.Notifications;
 using Abp.Timing;
 using AbpCompanyName.AbpProjectName.Controllers;
+using Deploy.LaunchPad.Core.Runtime.Users;
 using Deploy.LaunchPad.Util.Extensions;
 using Deploy.LaunchPad.Util.Guids;
 using Deploy.LaunchPad.Util.Timing;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 
 namespace AbpCompanyName.AbpProjectName.Web.Host.Controllers
@@ -36,9 +38,10 @@ namespace AbpCompanyName.AbpProjectName.Web.Host.Controllers
             {
                 message = "This is a test notification, created at " + Clock.Now;
             }
-
-            var defaultTenantAdmin = new UserIdentifier(GuidConstants.Default, 2);
-            var hostAdmin = new UserIdentifier(null, 1);
+            Guid id1 = GuidConstants.Default;
+            Guid id2 = Guid.NewGuid();
+            var defaultTenantAdmin = new UserIdentifier(GuidConstants.Default, id2);
+            var hostAdmin = new UserIdentifier(null, id1);
 
             await _notificationPublisher.PublishAsync(
                 "App.SimpleMessage",

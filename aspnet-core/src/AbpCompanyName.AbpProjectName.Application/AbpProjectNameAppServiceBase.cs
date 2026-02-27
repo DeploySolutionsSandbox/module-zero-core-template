@@ -3,6 +3,7 @@ using Abp.IdentityFramework;
 using Abp.Runtime.Session;
 using AbpCompanyName.AbpProjectName.Authorization.Users;
 using AbpCompanyName.AbpProjectName.MultiTenancy;
+using Deploy.LaunchPad.Core.Runtime.Session;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Threading.Tasks;

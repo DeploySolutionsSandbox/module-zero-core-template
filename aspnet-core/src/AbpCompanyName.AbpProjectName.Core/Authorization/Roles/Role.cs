@@ -1,14 +1,16 @@
 ﻿using Abp.Authorization.Roles;
 using AbpCompanyName.AbpProjectName.Authorization.Users;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 
 namespace AbpCompanyName.AbpProjectName.Authorization.Roles;
 
 public class Role : AbpRole<User>
 {
     public const int MaxDescriptionLength = 5000;
-
-    public Role()
+    
+    [SetsRequiredMembers]
+    public Role() :base()
     {
     }
 

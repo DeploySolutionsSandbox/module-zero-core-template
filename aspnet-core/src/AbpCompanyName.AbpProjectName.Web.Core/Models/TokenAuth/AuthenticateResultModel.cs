@@ -1,4 +1,6 @@
-﻿namespace AbpCompanyName.AbpProjectName.Models.TokenAuth
+﻿using System;
+
+namespace AbpCompanyName.AbpProjectName.Models.TokenAuth
 {
     public class AuthenticateResultModel
     {
@@ -8,6 +10,6 @@
 
         public int ExpireInSeconds { get; set; }
 
-        public long UserId { get; set; }
+        public Guid UserId { get; set; }
     }
 }

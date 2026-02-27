@@ -4,14 +4,15 @@ using AbpCompanyName.AbpProjectName.Roles.Dto;
 using AbpCompanyName.AbpProjectName.Users.Dto;
 using Deploy.LaunchPad.Core.Application.Services;
 using Deploy.LaunchPad.Core.Application.Services.Dto;
+using System;
 using System.Threading.Tasks;
 
 namespace AbpCompanyName.AbpProjectName.Users;
 
-public interface IUserAppService : IAsyncCrudAppService<UserDto, long, PagedUserResultRequestDto, CreateUserDto, UserDto>
+public interface IUserAppService : IAsyncCrudAppService<UserDto, Guid, PagedUserResultRequestDto, CreateUserDto, UserDto>
 {
-    Task DeActivate(EntityDto<long> user);
-    Task Activate(EntityDto<long> user);
+    Task DeActivate(EntityDto user);
+    Task Activate(EntityDto user);
     Task<ListResultDto<RoleDto>> GetRoles();
     Task ChangeLanguage(ChangeUserLanguageDto input);
 

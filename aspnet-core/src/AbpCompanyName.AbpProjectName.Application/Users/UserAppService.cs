@@ -27,7 +27,7 @@ using System.Threading.Tasks;
 namespace AbpCompanyName.AbpProjectName.Users;
 
 [AbpAuthorize(PermissionNames.Pages_Users)]
-public class UserAppService : AsyncCrudAppService<User, UserDto, long, PagedUserResultRequestDto, CreateUserDto, UserDto>, IUserAppService
+public class UserAppService : AsyncCrudAppService<User, UserDto, Guid, PagedUserResultRequestDto, CreateUserDto, UserDto>, IUserAppService
 {
     private readonly UserManager _userManager;
     private readonly RoleManager _roleManager;
@@ -37,7 +37,7 @@ public class UserAppService : AsyncCrudAppService<User, UserDto, long, PagedUser
     private readonly LogInManager _logInManager;
 
     public UserAppService(
-        IRepository<User, long> repository,
+        IRepository<User> repository,
         UserManager userManager,
         RoleManager roleManager,
         IRepository<Role> roleRepository,
@@ -95,14 +95,14 @@ public class UserAppService : AsyncCrudAppService<User, UserDto, long, PagedUser
         return await GetAsync(input);
     }
 
-    public override async Task DeleteAsync(EntityDto<long> input)
+    public override async Task DeleteAsync(EntityDto<Guid> input)
     {
         var user = await _userManager.GetUserByIdAsync(input.Id);
         await _userManager.DeleteAsync(user);
     }
 
     [AbpAuthorize(PermissionNames.Pages_Users_Activation)]
-    public async Task Activate(EntityDto<long> user)
+    public async Task Activate(EntityDto user)
     {
         await Repository.UpdateAsync(user.Id, async (entity) =>
         {
@@ -111,7 +111,7 @@ public class UserAppService : AsyncCrudAppService<User, UserDto, long, PagedUser
     }
 
     [AbpAuthorize(PermissionNames.Pages_Users_Activation)]
-    public async Task DeActivate(EntityDto<long> user)
+    public async Task DeActivate(EntityDto user)
     {
         await Repository.UpdateAsync(user.Id, async (entity) =>
         {
@@ -166,7 +166,7 @@ public class UserAppService : AsyncCrudAppService<User, UserDto, long, PagedUser
             .WhereIf(input.IsActive.HasValue, x => x.IsActive == input.IsActive);
     }
 
-    protected override async Task<User> GetEntityByIdAsync(long id)
+    protected override async Task<User> GetEntityByIdAsync(Guid id)
     {
         var user = await Repository.GetAllIncluding(x => x.Roles).FirstOrDefaultAsync(x => x.Id == id);
 

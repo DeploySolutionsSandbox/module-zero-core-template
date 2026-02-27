@@ -4,6 +4,7 @@ using Abp.MultiTenancy;
 using Abp.Net.Mail;
 using Deploy.LaunchPad.Core.MultiTenancy;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq;
 
 namespace AbpCompanyName.AbpProjectName.EntityFrameworkCore.Seed.Host;
@@ -41,7 +42,10 @@ public class DefaultSettingsCreator
             return;
         }
 
-        _context.Settings.Add(new Setting(tenantId, null, name, value));
+        _context.Settings.Add(new Setting(tenantId, null, name, value)
+        {
+            Id = Guid.NewGuid(),
+        });
         _context.SaveChanges();
     }
 }

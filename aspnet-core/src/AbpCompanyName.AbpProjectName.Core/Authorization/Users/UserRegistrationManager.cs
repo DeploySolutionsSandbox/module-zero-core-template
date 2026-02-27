@@ -46,6 +46,7 @@ public class UserRegistrationManager : DomainService
 
         var user = new User
         {
+            Id = Guid.NewGuid(),
             TenantId = tenant.Id,
             Name = name,
             Surname = surname,
@@ -60,7 +61,7 @@ public class UserRegistrationManager : DomainService
 
         foreach (var defaultRole in await _roleManager.Roles.Where(r => r.IsDefault).ToListAsync())
         {
-            user.Roles.Add(new UserRole(tenant.Id, user.Id, defaultRole.Id));
+            user.Roles.Add(new UserRole(tenant.Id, user.Id, defaultRole.Id) { Id = Guid.NewGuid()});
         }
 
         await _userManager.InitializeOptionsAsync(tenant.Id);
