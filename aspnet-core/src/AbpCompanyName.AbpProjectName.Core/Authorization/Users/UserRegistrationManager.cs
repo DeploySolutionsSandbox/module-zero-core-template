@@ -6,6 +6,7 @@ using Abp.UI;
 using AbpCompanyName.AbpProjectName.Authorization.Roles;
 using AbpCompanyName.AbpProjectName.MultiTenancy;
 using Deploy.LaunchPad.Core.Runtime.Session;
+using Deploy.LaunchPad.Util.Elements;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -48,7 +49,7 @@ public class UserRegistrationManager : DomainService
         {
             Id = Guid.NewGuid(),
             TenantId = tenant.Id,
-            Name = name,
+            Name = new ElementName(name),
             Surname = surname,
             EmailAddress = emailAddress,
             IsActive = true,

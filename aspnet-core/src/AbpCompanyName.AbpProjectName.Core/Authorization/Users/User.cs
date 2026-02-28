@@ -1,4 +1,5 @@
 ﻿using Abp.Authorization.Users;
+using Deploy.LaunchPad.Util.Elements;
 using Deploy.LaunchPad.Util.Extensions;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ public class User : AbpUser<User>
             Id= Guid.NewGuid(),
             TenantId = tenantId,
             UserName = AdminUserName,
-            Name = AdminUserName,
+            Name = new ElementName(AdminUserName),
             Surname = AdminUserName,
             EmailAddress = emailAddress,
             Roles = new List<UserRole>()

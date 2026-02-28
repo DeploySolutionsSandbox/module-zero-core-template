@@ -1,6 +1,7 @@
 using Abp.Application.Editions;
 using Abp.Application.Features;
 using AbpCompanyName.AbpProjectName.Editions;
+using Deploy.LaunchPad.Util.Elements;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
@@ -23,10 +24,10 @@ public class DefaultEditionCreator
 
     private void CreateEditions()
     {
-        var defaultEdition = _context.Editions.IgnoreQueryFilters().FirstOrDefault(e => e.Name == EditionManager.DefaultEditionName);
+        var defaultEdition = _context.Editions.IgnoreQueryFilters().FirstOrDefault(e => e.Name.Full == EditionManager.DefaultEditionName);
         if (defaultEdition == null)
         {
-            defaultEdition = new Edition { Id = Guid.NewGuid(), Name = EditionManager.DefaultEditionName, DisplayName = EditionManager.DefaultEditionName };
+            defaultEdition = new Edition { Id = Guid.NewGuid(), Name = new ElementName (EditionManager.DefaultEditionName), DisplayName = EditionManager.DefaultEditionName };
             _context.Editions.Add(defaultEdition);
             _context.SaveChanges();
 
@@ -36,7 +37,7 @@ public class DefaultEditionCreator
 
     private void CreateFeatureIfNotExists(System.Guid editionId, string featureName, bool isEnabled)
     {
-        if (_context.EditionFeatureSettings.IgnoreQueryFilters().Any(ef => ef.EditionId == editionId && ef.Name == featureName))
+        if (_context.EditionFeatureSettings.IgnoreQueryFilters().Any(ef => ef.EditionId == editionId && ef.Name.Full == featureName))
         {
             return;
         }
@@ -44,7 +45,7 @@ public class DefaultEditionCreator
         _context.EditionFeatureSettings.Add(new EditionFeatureSetting
         {
             Id= Guid.NewGuid(),
-            Name = featureName,
+            Name = new ElementName( featureName),
             Value = isEnabled.ToString(),
             EditionId = editionId
         });

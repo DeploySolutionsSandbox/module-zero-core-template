@@ -12,7 +12,7 @@ public class RoleMapProfile : Profile
     {
         // Role and permission
         CreateMap<Permission, string>().ConvertUsing(r => r.Name);
-        CreateMap<RolePermissionSetting, string>().ConvertUsing(r => r.Name);
+        CreateMap<RolePermissionSetting, string>().ConvertUsing(r => r.Name.Full);
 
         CreateMap<CreateRoleDto, Role>();
 

@@ -6,6 +6,7 @@ using AbpCompanyName.AbpProjectName.Authorization;
 using AbpCompanyName.AbpProjectName.Authorization.Roles;
 using AbpCompanyName.AbpProjectName.Authorization.Users;
 using Deploy.LaunchPad.Core.MultiTenancy;
+using Deploy.LaunchPad.Util.Elements;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -32,7 +33,7 @@ public class HostRoleAndUserCreator
     {
         // Admin role for host
 
-        var adminRoleForHost = _context.Roles.IgnoreQueryFilters().FirstOrDefault(r => r.TenantId == null && r.Name == StaticRoleNames.Host.Admin);
+        var adminRoleForHost = _context.Roles.IgnoreQueryFilters().FirstOrDefault(r => r.TenantId == null && r.Name.Full == StaticRoleNames.Host.Admin);
         if (adminRoleForHost == null)
         {
             adminRoleForHost = _context.Roles.Add(new Role(null, StaticRoleNames.Host.Admin, StaticRoleNames.Host.Admin) {Id= Guid.NewGuid(), IsStatic = true, IsDefault = true }).Entity;
@@ -50,7 +51,7 @@ public class HostRoleAndUserCreator
         var permissions = PermissionFinder
             .GetAllPermissions(new AbpProjectNameAuthorizationProvider())
             .Where(p => p.MultiTenancySides.HasFlag(MultiTenancySides.Host) &&
-                        !grantedPermissions.Contains(p.Name))
+                        !grantedPermissions.Contains(new ElementName(p.Name)))
             .ToList();
 
         if (permissions.Any())
@@ -60,7 +61,7 @@ public class HostRoleAndUserCreator
                 {
                     Id = Guid.NewGuid(),
                     TenantId = null,
-                    Name = permission.Name,
+                    Name = new ElementName(permission.Name),
                     IsGranted = true,
                     RoleId = adminRoleForHost.Id
                 })
@@ -78,7 +79,7 @@ public class HostRoleAndUserCreator
                 Id = Guid.NewGuid(),
                 TenantId = null,
                 UserName = AbpUserBase.AdminUserName,
-                Name = "admin",
+                Name = new  ElementName( "admin"),
                 Surname = "admin",
                 EmailAddress = "admin@aspnetboilerplate.com",
                 IsEmailConfirmed = true,

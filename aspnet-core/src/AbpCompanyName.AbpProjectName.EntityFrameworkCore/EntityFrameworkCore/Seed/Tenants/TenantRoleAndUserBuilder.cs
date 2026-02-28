@@ -6,6 +6,7 @@ using AbpCompanyName.AbpProjectName.Authorization;
 using AbpCompanyName.AbpProjectName.Authorization.Roles;
 using AbpCompanyName.AbpProjectName.Authorization.Users;
 using Deploy.LaunchPad.Core.MultiTenancy;
+using Deploy.LaunchPad.Util.Elements;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -34,7 +35,7 @@ public class TenantRoleAndUserBuilder
     {
         // Admin role
 
-        var adminRole = _context.Roles.IgnoreQueryFilters().FirstOrDefault(r => r.TenantId == _tenantId && r.Name == StaticRoleNames.Tenants.Admin);
+        var adminRole = _context.Roles.IgnoreQueryFilters().FirstOrDefault(r => r.TenantId == _tenantId && r.Name.Full == StaticRoleNames.Tenants.Admin);
         if (adminRole == null)
         {
             adminRole = _context.Roles.Add(new Role(_tenantId, StaticRoleNames.Tenants.Admin, StaticRoleNames.Tenants.Admin) { Id = Guid.NewGuid(), IsStatic = true }).Entity;
@@ -52,7 +53,7 @@ public class TenantRoleAndUserBuilder
         var permissions = PermissionFinder
             .GetAllPermissions(new AbpProjectNameAuthorizationProvider())
             .Where(p => p.MultiTenancySides.HasFlag(MultiTenancySides.Tenant) &&
-                        !grantedPermissions.Contains(p.Name))
+                        !grantedPermissions.Contains(new ElementName(p.Name)))
             .ToList();
 
         if (permissions.Any())
@@ -62,7 +63,7 @@ public class TenantRoleAndUserBuilder
                 {
                     Id = Guid.NewGuid(),
                     TenantId = _tenantId,
-                    Name = permission.Name,
+                    Name = new ElementName(permission.Name),
                     IsGranted = true,
                     RoleId = adminRole.Id
                 })

@@ -26,7 +26,7 @@ public class SessionAppService_Tests : AbpProjectNameTestBase
         // Assert
         var currentUser = await GetCurrentUserAsync();
         output.User.ShouldNotBe(null);
-        output.User.Name.ShouldBe(currentUser.Name);
+        output.User.Name.ShouldBe(currentUser.Name.Full);
         output.User.Surname.ShouldBe(currentUser.Surname);
 
         output.Tenant.ShouldBe(null);
@@ -43,9 +43,9 @@ public class SessionAppService_Tests : AbpProjectNameTestBase
         var currentTenant = await GetCurrentTenantAsync();
 
         output.User.ShouldNotBe(null);
-        output.User.Name.ShouldBe(currentUser.Name);
+        output.User.Name.ShouldBe(currentUser.Name.Full);
 
         output.Tenant.ShouldNotBe(null);
-        output.Tenant.Name.ShouldBe(currentTenant.Name);
+        output.Tenant.Name.ShouldBe(currentTenant.Name.Full);
     }
 }

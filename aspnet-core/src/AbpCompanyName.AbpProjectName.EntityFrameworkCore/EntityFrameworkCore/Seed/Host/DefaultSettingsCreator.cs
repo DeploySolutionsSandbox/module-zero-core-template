@@ -37,7 +37,7 @@ public class DefaultSettingsCreator
 
     private void AddSettingIfNotExists(string name, string value, System.Guid? tenantId = null)
     {
-        if (_context.Settings.IgnoreQueryFilters().Any(s => s.Name == name && s.TenantId == tenantId && s.UserId == null))
+        if (_context.Settings.IgnoreQueryFilters().Any(s => s.Name.Full == name && s.TenantId == tenantId && s.UserId == null))
         {
             return;
         }

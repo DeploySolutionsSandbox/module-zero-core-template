@@ -13,6 +13,7 @@ using AbpCompanyName.AbpProjectName.MultiTenancy.Dto;
 using Deploy.LaunchPad.Core.Application.Services.Dto;
 using Deploy.LaunchPad.Core.Domain.Repositories;
 using Deploy.LaunchPad.Core.MultiTenancy;
+using Deploy.LaunchPad.Util.Elements;
 using Deploy.LaunchPad.Util.Extensions;
 using Microsoft.AspNetCore.Identity;
 using System;
@@ -78,7 +79,7 @@ public class TenantAppService : AsyncCrudAppService<Tenant, TenantDto, System.Gu
             await CurrentUnitOfWork.SaveChangesAsync(); // To get static role ids
 
             // Grant all permissions to admin role
-            var adminRole = _roleManager.Roles.Single(r => r.Name == StaticRoleNames.Tenants.Admin);
+            var adminRole = _roleManager.Roles.Single(r => r.Name.Full == StaticRoleNames.Tenants.Admin);
             await _roleManager.GrantAllPermissionsAsync(adminRole);
 
             // Create admin user for the tenant
@@ -88,7 +89,7 @@ public class TenantAppService : AsyncCrudAppService<Tenant, TenantDto, System.Gu
             await CurrentUnitOfWork.SaveChangesAsync(); // To get admin user's id
 
             // Assign admin user to role!
-            CheckErrors(await _userManager.AddToRoleAsync(adminUser, adminRole.Name));
+            CheckErrors(await _userManager.AddToRoleAsync(adminUser, adminRole.Name.Full));
             await CurrentUnitOfWork.SaveChangesAsync();
         }
 
@@ -98,7 +99,7 @@ public class TenantAppService : AsyncCrudAppService<Tenant, TenantDto, System.Gu
     protected override IQueryable<Tenant> CreateFilteredQuery(PagedTenantResultRequestDto input)
     {
         return (IQueryable<Tenant>)Repository.GetAll()
-            .WhereIf(!input.Keyword.IsNullOrWhiteSpace(), x => x.TenancyName.Contains(input.Keyword) || x.Name.Contains(input.Keyword))
+            .WhereIf(!input.Keyword.IsNullOrWhiteSpace(), x => x.TenancyName.Contains(input.Keyword) || x.Name.Full.Contains(input.Keyword))
             .WhereIf(input.IsActive.HasValue, x => x.IsActive == input.IsActive);
     }
 
@@ -110,7 +111,7 @@ public class TenantAppService : AsyncCrudAppService<Tenant, TenantDto, System.Gu
     protected override void MapToEntity(TenantDto updateInput, Tenant entity)
     {
         // Manually mapped since TenantDto contains non-editable properties too.
-        entity.Name = updateInput.Name;
+        entity.Name = new ElementName(updateInput.Name);
         entity.TenancyName = updateInput.TenancyName;
         entity.IsActive = updateInput.IsActive;
     }
