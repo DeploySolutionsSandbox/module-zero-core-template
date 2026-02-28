@@ -24,6 +24,4 @@ public class Role : AbpRole<User>
     {
     }
 
-    [StringLength(MaxDescriptionLength)]
-    public string? Description { get; set; }
 }
