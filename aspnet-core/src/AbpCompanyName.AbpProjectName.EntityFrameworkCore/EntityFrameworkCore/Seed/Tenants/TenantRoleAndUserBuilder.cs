@@ -35,7 +35,7 @@ public class TenantRoleAndUserBuilder
     {
         // Admin role
 
-        var adminRole = _context.Roles.IgnoreQueryFilters().FirstOrDefault(r => r.TenantId == _tenantId && r.Name.Full == StaticRoleNames.Tenants.Admin);
+        var adminRole = _context.Roles.IgnoreQueryFilters().FirstOrDefault(r => r.TenantId == _tenantId && r.Name == StaticRoleNames.Tenants.Admin);
         if (adminRole == null)
         {
             adminRole = _context.Roles.Add(new Role(_tenantId, StaticRoleNames.Tenants.Admin, StaticRoleNames.Tenants.Admin) { Id = Guid.NewGuid(), IsStatic = true }).Entity;
@@ -53,7 +53,7 @@ public class TenantRoleAndUserBuilder
         var permissions = PermissionFinder
             .GetAllPermissions(new AbpProjectNameAuthorizationProvider())
             .Where(p => p.MultiTenancySides.HasFlag(MultiTenancySides.Tenant) &&
-                        !grantedPermissions.Contains(new ElementName(p.Name)))
+                        !grantedPermissions.Contains(p.Name))
             .ToList();
 
         if (permissions.Any())
@@ -63,7 +63,7 @@ public class TenantRoleAndUserBuilder
                 {
                     Id = Guid.NewGuid(),
                     TenantId = _tenantId,
-                    Name = new ElementName(permission.Name),
+                    Name = permission.Name,
                     IsGranted = true,
                     RoleId = adminRole.Id
                 })

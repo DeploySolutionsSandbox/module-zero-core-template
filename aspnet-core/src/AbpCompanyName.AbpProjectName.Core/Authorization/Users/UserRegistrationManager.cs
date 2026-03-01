@@ -49,7 +49,7 @@ public class UserRegistrationManager : DomainService
         {
             Id = Guid.NewGuid(),
             TenantId = tenant.Id,
-            Name = new ElementName(name),
+            Name = name,
             Surname = surname,
             EmailAddress = emailAddress,
             IsActive = true,

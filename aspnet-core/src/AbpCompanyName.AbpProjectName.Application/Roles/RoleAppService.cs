@@ -58,7 +58,7 @@ public class RoleAppService : AsyncCrudAppService<Role, RoleDto, System.Guid, Pa
             .Roles
             .WhereIf(
                 !input.Permission.IsNullOrWhiteSpace(),
-                r => r.Permissions.Any(rp => rp.Name.Full == input.Permission && rp.IsGranted)
+                r => r.Permissions.Any(rp => rp.Name == input.Permission && rp.IsGranted)
             ).ToList();
 
         return new ListResultDto<RoleListDto>(ObjectMapper.Map<List<RoleListDto>>(roles));
@@ -111,7 +111,7 @@ public class RoleAppService : AsyncCrudAppService<Role, RoleDto, System.Guid, Pa
     protected override IQueryable<Role> CreateFilteredQuery(PagedRoleResultRequestDto input)
     {
         return (IQueryable<Role>)Repository.GetAllIncluding(x => x.Permissions)
-            .WhereIf(!input.Keyword.IsNullOrWhiteSpace(), x => x.Name.Full.Contains(input.Keyword)
+            .WhereIf(!input.Keyword.IsNullOrWhiteSpace(), x => x.Name.Contains(input.Keyword)
             || x.DisplayName.Contains(input.Keyword)
             || x.Description.Full.Contains(input.Keyword));
     }

@@ -22,7 +22,7 @@ public class User : AbpUser<User>
             Id= Guid.NewGuid(),
             TenantId = tenantId,
             UserName = AdminUserName,
-            Name = new ElementName(AdminUserName),
+            Name = AdminUserName,
             Surname = AdminUserName,
             EmailAddress = emailAddress,
             Roles = new List<UserRole>()

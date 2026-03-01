@@ -13,6 +13,7 @@ using AbpCompanyName.AbpProjectName.Authorization.Users;
 using AbpCompanyName.AbpProjectName.Roles.Dto;
 using AbpCompanyName.AbpProjectName.Users.Dto;
 using Deploy.LaunchPad.Core.Application.Services.Dto;
+using Deploy.LaunchPad.Core.Domain.Entities;
 using Deploy.LaunchPad.Core.Domain.Repositories;
 using Deploy.LaunchPad.Core.Runtime.Session;
 using Deploy.LaunchPad.Util.Extensions;
@@ -162,7 +163,7 @@ public class UserAppService : AsyncCrudAppService<User, UserDto, Guid, PagedUser
     protected override IQueryable<User> CreateFilteredQuery(PagedUserResultRequestDto input)
     {
         return (IQueryable<User>)Repository.GetAllIncluding(x => x.Roles)
-            .WhereIf(!input.Keyword.IsNullOrWhiteSpace(), x => x.UserName.Contains(input.Keyword) || x.Name.Full.Contains(input.Keyword) || x.EmailAddress.Contains(input.Keyword))
+            .WhereIf(!input.Keyword.IsNullOrWhiteSpace(), x => x.UserName.Contains(input.Keyword) || x.Name.Contains(input.Keyword) || x.EmailAddress.Contains(input.Keyword))
             .WhereIf(input.IsActive.HasValue, x => x.IsActive == input.IsActive);
     }
 

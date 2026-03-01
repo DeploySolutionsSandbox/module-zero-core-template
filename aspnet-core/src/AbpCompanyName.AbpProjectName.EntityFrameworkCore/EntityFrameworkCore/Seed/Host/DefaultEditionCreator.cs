@@ -24,10 +24,10 @@ public class DefaultEditionCreator
 
     private void CreateEditions()
     {
-        var defaultEdition = _context.Editions.IgnoreQueryFilters().FirstOrDefault(e => e.Name.Full == EditionManager.DefaultEditionName);
+        var defaultEdition = _context.Editions.IgnoreQueryFilters().FirstOrDefault(e => e.Name == EditionManager.DefaultEditionName);
         if (defaultEdition == null)
         {
-            defaultEdition = new Edition { Id = Guid.NewGuid(), Name = new ElementName (EditionManager.DefaultEditionName), DisplayName = EditionManager.DefaultEditionName };
+            defaultEdition = new Edition { Id = Guid.NewGuid(), Name = EditionManager.DefaultEditionName, DisplayName = EditionManager.DefaultEditionName };
             _context.Editions.Add(defaultEdition);
             _context.SaveChanges();
 
@@ -37,7 +37,7 @@ public class DefaultEditionCreator
 
     private void CreateFeatureIfNotExists(System.Guid editionId, string featureName, bool isEnabled)
     {
-        if (_context.EditionFeatureSettings.IgnoreQueryFilters().Any(ef => ef.EditionId == editionId && ef.Name.Full == featureName))
+        if (_context.EditionFeatureSettings.IgnoreQueryFilters().Any(ef => ef.EditionId == editionId && ef.Name == featureName))
         {
             return;
         }
@@ -45,7 +45,7 @@ public class DefaultEditionCreator
         _context.EditionFeatureSettings.Add(new EditionFeatureSetting
         {
             Id= Guid.NewGuid(),
-            Name = new ElementName( featureName),
+            Name =  featureName,
             Value = isEnabled.ToString(),
             EditionId = editionId
         });
