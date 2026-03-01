@@ -54,5 +54,6 @@
     <PackageReference Include="Serilog.Sinks.Console" />
     <PackageReference Include="Serilog.Sinks.File" />
     <PackageReference Include="Microsoft.OpenApi" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" />
   </ItemGroup>
 </Project>
