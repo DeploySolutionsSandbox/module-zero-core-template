@@ -113,7 +113,8 @@ public class RoleAppService : AsyncCrudAppService<Role, RoleDto, System.Guid, Pa
         return (IQueryable<Role>)Repository.GetAllIncluding(x => x.Permissions)
             .WhereIf(!input.Keyword.IsNullOrWhiteSpace(), x => x.Name.Contains(input.Keyword)
             || x.DisplayName.Contains(input.Keyword)
-            || x.Description.Full.Contains(input.Keyword));
+            //|| x.Description.Full.Contains(input.Keyword)
+            );
     }
 
     protected override async Task<Role> GetEntityByIdAsync(System.Guid id)
