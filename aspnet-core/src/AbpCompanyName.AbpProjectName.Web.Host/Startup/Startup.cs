@@ -1,10 +1,13 @@
 ﻿using Abp.AspNetCore;
 using Abp.AspNetCore.Mvc.Antiforgery;
 using Abp.AspNetCore.SignalR.Hubs;
+using Abp.Castle.Logging.Log4Net;
+using Abp.Runtime.Session;
 using AbpCompanyName.AbpProjectName.Configuration;
 using AbpCompanyName.AbpProjectName.Identity;
 using Castle.Facilities.Logging;
 using Castle.Services.Logging.SerilogIntegration;
+using Deploy.LaunchPad.Core.Runtime.Session;
 using Deploy.LaunchPad.Util.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -46,8 +49,8 @@ namespace AbpCompanyName.AbpProjectName.Web.Host.Startup
 
             IdentityRegistrar.Register(services);
             AuthConfigurer.Configure(services, _appConfiguration);
-
-            services.AddSignalR();
+            services.AddSingleton<ILaunchPadSession, ClaimsAbpSession>();
+            //services.AddSignalR();
 
             // Configure CORS for angular2 UI
             services.AddCors(
@@ -73,25 +76,25 @@ namespace AbpCompanyName.AbpProjectName.Web.Host.Startup
             // Configure Abp and Dependency Injection
 
             // Configure Serilog logging
-            Log.Logger = new LoggerConfiguration()
-                .ReadFrom.Configuration(_appConfiguration)
-                .Enrich.FromLogContext()
-                .CreateLogger();
-            services.AddAbpWithoutCreatingServiceProvider<AbpProjectNameWebHostModule>(
-                // Configure Serilog logging
-                options => options.IocManager.IocContainer.AddFacility<LoggingFacility>(
-                    f => f.LogUsing(new SerilogFactory(Log.Logger))
-                )
-            );
+            //Log.Logger = new LoggerConfiguration()
+            //    .ReadFrom.Configuration(_appConfiguration)
+            //    .Enrich.FromLogContext()
+            //    .CreateLogger();
             //services.AddAbpWithoutCreatingServiceProvider<AbpProjectNameWebHostModule>(
-            //    // Configure Log4Net logging
+            //    // Configure Serilog logging
             //    options => options.IocManager.IocContainer.AddFacility<LoggingFacility>(
-            //        f => f.UseAbpLog4Net().WithConfig(_hostingEnvironment.IsDevelopment()
-            //            ? "log4net.config"
-            //            : "log4net.Production.config"
-            //        )
+            //        f => f.LogUsing(new SerilogFactory(Log.Logger))
             //    )
             //);
+            services.AddAbpWithoutCreatingServiceProvider<AbpProjectNameWebHostModule>(
+                // Configure Log4Net logging
+                options => options.IocManager.IocContainer.AddFacility<LoggingFacility>(
+                    f => f.UseAbpLog4Net().WithConfig(_hostingEnvironment.IsDevelopment()
+                        ? "log4net.config"
+                        : "log4net.Production.config"
+                    )
+                )
+            );
             //services.AddAbp<AbpProjectNameWebHostModule>();
 
 
@@ -117,12 +120,12 @@ namespace AbpCompanyName.AbpProjectName.Web.Host.Startup
 
             app.UseAbpRequestLocalization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapHub<AbpCommonHub>("/signalr");
-                endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
-                endpoints.MapControllerRoute("defaultWithArea", "{area}/{controller=Home}/{action=Index}/{id?}");
-            });
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapHub<AbpCommonHub>("/signalr");
+            //    endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+            //    endpoints.MapControllerRoute("defaultWithArea", "{area}/{controller=Home}/{action=Index}/{id?}");
+            //});
 
             // Enable middleware to serve generated Swagger as a JSON endpoint
             app.UseSwagger(c => { c.RouteTemplate = "swagger/{documentName}/swagger.json"; });
