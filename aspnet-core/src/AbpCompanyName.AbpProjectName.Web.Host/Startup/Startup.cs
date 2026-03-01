@@ -57,7 +57,7 @@ namespace AbpCompanyName.AbpProjectName.Web.Host.Startup
 
             string securityKey = "Deploy.WebPortal_98050ab8-ddf7-4e35-8bd2-0db9efe9bb84";
             string issuer = "Deploy Software Solutions";
-            string audience = "localhost";
+            string audience = "AbpProjectName";
 
             services.AddAuthentication(option =>
             {
