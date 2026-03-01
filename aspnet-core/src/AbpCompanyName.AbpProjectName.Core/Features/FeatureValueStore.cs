@@ -10,6 +10,7 @@ using Deploy.LaunchPad.Core.Domain.Repositories;
 using Deploy.LaunchPad.Core.Domain.UnitOfWork;
 using Deploy.LaunchPad.Core.MultiTenancy;
 using Deploy.LaunchPad.Core.Runtime.Caching;
+using System;
 
 namespace AbpCompanyName.AbpProjectName.Features;
 
@@ -17,9 +18,9 @@ public class FeatureValueStore : AbpFeatureValueStore<Tenant, User>
 {
     public FeatureValueStore(
         ICacheManager cacheManager,
-        IRepository<TenantFeatureSetting> tenantFeatureRepository,
-        IRepository<Tenant> tenantRepository,
-        IRepository<EditionFeatureSetting> editionFeatureRepository,
+        IRepository<TenantFeatureSetting, Guid> tenantFeatureRepository,
+        IRepository<Tenant, Guid> tenantRepository,
+        IRepository<EditionFeatureSetting, Guid> editionFeatureRepository,
         IFeatureManager featureManager,
         IUnitOfWorkManager unitOfWorkManager)
         : base(

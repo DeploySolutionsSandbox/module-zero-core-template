@@ -33,11 +33,11 @@ public class UserManager : AbpUserManager<Role, User>
       IPermissionManager permissionManager,
       IUnitOfWorkManager unitOfWorkManager,
       ICacheManager cacheManager,
-      IRepository<OrganizationUnit> organizationUnitRepository,
-      IRepository<UserOrganizationUnit> userOrganizationUnitRepository,
+      IRepository<OrganizationUnit, Guid> organizationUnitRepository,
+      IRepository<UserOrganizationUnit, Guid> userOrganizationUnitRepository,
       IOrganizationUnitSettings organizationUnitSettings,
       ISettingManager settingManager,
-      IRepository<UserLogin> userLoginRepository)
+      IRepository<UserLogin, Guid> userLoginRepository)
       : base(
           roleManager,
           store,

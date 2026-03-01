@@ -11,6 +11,7 @@ using Deploy.LaunchPad.Core.Domain.UnitOfWork;
 using Deploy.LaunchPad.Core.Runtime.Caching;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 
 namespace AbpCompanyName.AbpProjectName.Authorization.Roles;
@@ -27,8 +28,8 @@ public class RoleManager : AbpRoleManager<Role, User>
         ICacheManager cacheManager,
         IUnitOfWorkManager unitOfWorkManager,
         IRoleManagementConfig roleManagementConfig,
-        IRepository<OrganizationUnit> organizationUnitRepository,
-        IRepository<OrganizationUnitRole> organizationUnitRoleRepository)
+        IRepository<OrganizationUnit, Guid> organizationUnitRepository,
+        IRepository<OrganizationUnitRole, Guid> organizationUnitRoleRepository)
         : base(
               store,
               roleValidators,

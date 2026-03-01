@@ -5,14 +5,15 @@ using AbpCompanyName.AbpProjectName.Authorization.Users;
 using AbpCompanyName.AbpProjectName.Editions;
 using Deploy.LaunchPad.Core.Domain.Repositories;
 using Deploy.LaunchPad.Core.MultiTenancy;
+using System;
 
 namespace AbpCompanyName.AbpProjectName.MultiTenancy;
 
 public class TenantManager : AbpTenantManager<Tenant, User>
 {
     public TenantManager(
-        IRepository<Tenant> tenantRepository,
-        IRepository<TenantFeatureSetting> tenantFeatureRepository,
+        IRepository<Tenant, Guid> tenantRepository,
+        IRepository<TenantFeatureSetting, Guid> tenantFeatureRepository,
         EditionManager editionManager,
         IAbpZeroFeatureValueStore featureValueStore)
         : base(

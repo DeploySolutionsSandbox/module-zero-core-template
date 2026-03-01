@@ -21,12 +21,12 @@ public class MultiTenantMigrateExecuter : ITransientDependency
 {
     private readonly Log _log;
     private readonly AbpZeroDbMigrator _migrator;
-    private readonly IRepository<Tenant> _tenantRepository;
+    private readonly IRepository<Tenant, Guid> _tenantRepository;
     private readonly IDbPerTenantConnectionStringResolver _connectionStringResolver;
 
     public MultiTenantMigrateExecuter(
         AbpZeroDbMigrator migrator,
-        IRepository<Tenant> tenantRepository,
+        IRepository<Tenant, Guid> tenantRepository,
         Log log,
         IDbPerTenantConnectionStringResolver connectionStringResolver)
     {

@@ -13,6 +13,7 @@ using Deploy.LaunchPad.Core.Domain.Repositories;
 using Deploy.LaunchPad.Core.Domain.UnitOfWork;
 using Deploy.LaunchPad.Util.Dependency;
 using Microsoft.AspNetCore.Identity;
+using System;
 using System.Diagnostics.CodeAnalysis;
 
 namespace AbpCompanyName.AbpProjectName.Authorization;
@@ -23,10 +24,10 @@ public class LogInManager : AbpLogInManager<Tenant, Role, User>
     public LogInManager(
         UserManager userManager,
         IMultiTenancyConfig multiTenancyConfig,
-        IRepository<Tenant> tenantRepository,
+        IRepository<Tenant, Guid> tenantRepository,
         IUnitOfWorkManager unitOfWorkManager,
         ISettingManager settingManager,
-        IRepository<UserLoginAttempt> userLoginAttemptRepository,
+        IRepository<UserLoginAttempt, Guid> userLoginAttemptRepository,
         IUserManagementConfig userManagementConfig,
         IIocResolver iocResolver,
         IPasswordHasher<User> passwordHasher,

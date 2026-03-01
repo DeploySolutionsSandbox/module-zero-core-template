@@ -33,7 +33,7 @@ public class TenantAppService : AsyncCrudAppService<Tenant, TenantDto, System.Gu
     private readonly IAbpZeroDbMigrator _abpZeroDbMigrator;
 
     public TenantAppService(
-        IRepository<Tenant> repository,
+        IRepository<Tenant,Guid> repository,
         TenantManager tenantManager,
         EditionManager editionManager,
         UserManager userManager,

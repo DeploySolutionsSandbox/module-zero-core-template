@@ -26,7 +26,7 @@ public class RoleAppService : AsyncCrudAppService<Role, RoleDto, System.Guid, Pa
     private readonly RoleManager _roleManager;
     private readonly UserManager _userManager;
 
-    public RoleAppService(IRepository<Role> repository, RoleManager roleManager, UserManager userManager)
+    public RoleAppService(IRepository<Role, Guid> repository, RoleManager roleManager, UserManager userManager)
         : base(repository)
     {
         _roleManager = roleManager;

@@ -31,16 +31,16 @@ public class UserAppService : AsyncCrudAppService<User, UserDto, Guid, PagedUser
 {
     private readonly UserManager _userManager;
     private readonly RoleManager _roleManager;
-    private readonly IRepository<Role> _roleRepository;
+    private readonly IRepository<Role, Guid> _roleRepository;
     private readonly IPasswordHasher<User> _passwordHasher;
     private readonly ILaunchPadSession _abpSession;
     private readonly LogInManager _logInManager;
 
     public UserAppService(
-        IRepository<User> repository,
+        IRepository<User, Guid> repository,
         UserManager userManager,
         RoleManager roleManager,
-        IRepository<Role> roleRepository,
+        IRepository<Role, Guid> roleRepository,
         IPasswordHasher<User> passwordHasher,
         ILaunchPadSession abpSession,
         LogInManager logInManager)
