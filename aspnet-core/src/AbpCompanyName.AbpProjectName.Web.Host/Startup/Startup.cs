@@ -9,12 +9,14 @@ using Castle.Facilities.Logging;
 using Castle.Services.Logging.SerilogIntegration;
 using Deploy.LaunchPad.Core.Runtime.Session;
 using Deploy.LaunchPad.Util.Extensions;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi;
 using Serilog;
 using System;
@@ -50,7 +52,32 @@ namespace AbpCompanyName.AbpProjectName.Web.Host.Startup
             IdentityRegistrar.Register(services);
             AuthConfigurer.Configure(services, _appConfiguration);
             services.AddSingleton<ILaunchPadSession, ClaimsAbpSession>();
+            services.AddHttpContextAccessor();
             //services.AddSignalR();
+
+            string securityKey = "Deploy.WebPortal_98050ab8-ddf7-4e35-8bd2-0db9efe9bb84";
+            string issuer = "Deploy Software Solutions";
+            string audience = "localhost";
+
+            services.AddAuthentication(option =>
+            {
+                option.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                option.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(option =>
+            {
+                option.SaveToken = true;
+                option.TokenValidationParameters = new TokenValidationParameters
+                {
+                    SaveSigninToken = true,
+                    ValidateIssuer = true,
+                    ValidateAudience = false,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = issuer,       // Authentication:JwtBearer:Issuer - config value from Secret Vault
+                    ValidAudience = audience,     // Authentication:JwtBearer:Audience - config value from Secret Vault
+                    IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(securityKey)) // Authentication:JwtBearer:SecurityKey - config value from Secret Vault
+                };
+            });
 
             // Configure CORS for angular2 UI
             services.AddCors(
